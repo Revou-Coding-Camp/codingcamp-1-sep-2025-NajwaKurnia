@@ -7,43 +7,59 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body style="height: 100vh; justify-items: center; align-content: center">
-    <header class="text-3xl font-bold">
-        <h1>My Todo List</h1>
-    </header>
-
-    <main>
-        <section id="todo-app" class="py-[16px]">
-            <form id="todo-form">
-                <input class="border-b rounded" type="text" id="new-todo" placeholder="What needs to be done?">
-                <input class="border-b rounded" type="date" id="due-date">
-                <button class="bg-blue-500 text-white px-4 py-1 rounded" id="add-todo">Add</button>
-                <ul id="todo-list"></ul>
-            </form>    
-        </section>
-
-        <section class="flex justify-between">
-            <button class="bg-gray-500 text-white px-2 py-1 rounded" id="filter-todo"> 
-                Filter Tasks
-
-            </button>
-            <button class="bg-red-500 text-white px-2 py-1 rounded" id="delete-all" onclick="deleteAll()">
-                Delete All Tasks
-            </button>
-        </section>
+<body style="height: 100vh; justify-items: center; align-content: center;" class="h-screen bg-[#222831]">
+    <div class="container mx-auto p-4 max-w-lg border rounded-2xl shadow-lg bg-[#DFD0B8]">
+        <header class="text-3xl font-bold text-center text-shadow-lg mb-4">
+            <h1>My Todo List</h1>
+        </header>
     
-        <section class="py-[16px]">
-            <h2 class="text-xl font-bold">List Of Todo</h2>
-            <ul id="todo-list" class="text-center">
-                <p>No task added yet
-            </ul>
-        </section>
+        <main>
+            <section id="todo-app" class="py-[16px]">
+                <form class="flex flex-1 gap-2">
+                    <input class="flex-1 px-3 py-2 rounded border-b border-black focus:outline-none shadow-sm" type="text" id="new-todo" placeholder="What needs to be done?">
+                    <input class="px-3 py-2 rounded border-b border-black focus:outline-none shadow-sm" type="date" id="due-date">
 
-    </main>
+                    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md flex flex-col gap-s" id="add-todo" onclick="validateInput();">+</button>
+                </form>    
+            </section>
+    
+            <section class="flex justify-between">
 
-    <footer>
-        <p>&copy; 2025 Najwa's Todo App</p>
-    </footer>
+                <select id="filter-todo" onchange="filterTodoItem(this.value)" class="bg-gray-500 text-white px-2 py-1 rounded-lg">
+                    <option value="all">All Tasks</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                </select>
+                
+                <button class="bg-blue-500 text-white px-2 py-1 rounded-lg" onclick="deleteAll();">
+                    Delete All
+                </button>
+            </section>
+        
+            <section class="py-[16px]">
+                <h2 class="text-xl font-bold">List Of Todo</h2>
+                <table class="w-full  text-left text-white bg-[#1e293b] rounded-lg overflow-hidden">
+                    <thead class="text-sm uppercase bg-[#0f172a] text-gray-300">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Task</th>
+                            <th scope="col" class="px-6 py-3">Due Date</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
+                            <th scope="col" class="px-6 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todo-list" class="text-center">
+                        <tr class="border-t border-gray-600">
+                            <td colspan="4" class="px-6 py-4 text-center text-gray-400">No task added yet</td>
+                        </tr>
+                </table>
+            </section>
+    
+        </main>
+        <footer class="text-center mt-6 text-sm text-black">
+            <p>&copy; 2025 Najwa's Todo App</p>
+        </footer>
+    </div>
+
 
 
 
